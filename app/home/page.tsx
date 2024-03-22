@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import dynamic from "next/dynamic";
 import reactElementToJSXString from "react-element-to-jsx-string";
 import { toast, Toaster } from "sonner";
