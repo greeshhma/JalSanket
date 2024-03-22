@@ -2,7 +2,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import reactElementToJSXString from "react-element-to-jsx-string";
+import { toast, Toaster } from "sonner";
 import localFont from 'next/font/local';
+import styled from 'styled-components'
 const samarkan = localFont({
   src:"../..//public/fonts/samarkan.ttf",
   display:"swap",
@@ -12,7 +15,7 @@ const World = dynamic(() => import("../components/ui/globe").then((m) => m.World
   ssr: false,
 });
 
-export default function Page() {
+export default function Page() {   
   const globeConfig = {
     pointSize: 4,
     globeColor: "#062056",
@@ -400,7 +403,7 @@ export default function Page() {
   ];
 
   return (
-    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto dark:bg-black relative w-full">
+    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto dark:bg-black bg-white relative w-full">
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
         <motion.div
           initial={{
@@ -416,19 +419,23 @@ export default function Page() {
           }}
           className="div"
         >
-          <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
+          <h1 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
            <p className={samarkan.className}>JalSanket</p>
+          </h1>
+          <h2 className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
+            Jal hi Jeevan hai!
+            <p>
+            <button className="px-6 py-2 rounded-full bg-[#15194b] font-bold text-white tracking-widest uppercase transform hover:scale-105 hover:bg-[#151736] transition-colors duration-200">
+        Get Started
+      </button>
+            </p>
           </h2>
-          <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
-            This globe is interactive and customizable. Have fun with it, and
-            don&apos;t forget to share it. :)
-          </p>
         </motion.div>
         {/* <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" /> */}
         <div className="absolute w-full -bottom-20 h-72 md:h-full z-10">
           <World data={sampleArcs} globeConfig={globeConfig} />;
         </div>
-        
+
       </div>
     </div>
   );
